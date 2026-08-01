@@ -17,6 +17,6 @@ test("summary includes the report and product links", () => {
     badgeUrl: "https://review-router.tenpace.com/review-health/acme/router/badge.svg",
   });
   assert.match(markdown, /82\/100/);
-  assert.match(markdown, /Route review requests to Slack/);
+  assert.match(markdown, /Route these reviews to Slack/);
   assert.match(markdown, /badge\.svg/);
 });

@@ -17,6 +17,8 @@ The Action reports:
 
 The Action does not send data to Review Router. It uses the repository-scoped `GITHUB_TOKEN` to read GitHub data. The live badge and public report use public GitHub data when someone opens them.
 
+By default, the Action still sends no repository data to Tenpace. An explicit `create-setup-link: true` input creates only a declarative, human-approved setup session using GitHub Actions OIDC. The agent never receives provider credentials.
+
 ## Add the audit
 
 Create `.github/workflows/review-health.yml`:
@@ -57,6 +59,10 @@ The Action writes the Markdown summary to the workflow run. The optional upload 
 - `report-path`: JSON report path. The default is `review-router-audit.json`. Use an empty value to skip the file.
 - `comment`: Post or update a pull request comment. The default is `false`.
 - `fail-below`: Fail when the score is below this value. The default is empty, so the Action reports without blocking.
+- `create-setup-link`: Add a short-lived human Review Router authorization link to the summary. Default: `false`.
+- `slack-channel`: Proposed channel for the optional link. Default: `pull-requests`.
+- `setup-preset`: `repo-watch`, `full-coverage`, or `team-activity`. Default: `repo-watch`.
+- `reviewer-mentions`: `all`, `connected-only`, or `none`. Default: `all`.
 
 ## Outputs
 
@@ -72,6 +78,27 @@ The Action provides these outputs:
 - `report-path`
 - `badge-url`
 - `health-url`
+- `setup-id`
+- `setup-url`
+
+## Optional setup link
+
+Turn an audit into an opt-in setup funnel without placing provider tokens in workflow inputs:
+
+```yaml
+permissions:
+  contents: read
+  pull-requests: read
+  id-token: write
+
+steps:
+  - uses: Patrax/review-router-audit@v1
+    with:
+      create-setup-link: true
+      slack-channel: pull-requests
+```
+
+The audit remains non-blocking if Tenpace is temporarily unavailable. The summary explains the failure and still reports all local metrics. The link contains no claim secret and can only be opened by the GitHub actor in the signed workflow OIDC token.
 
 ## Pull request comments
 

@@ -9,6 +9,7 @@ import {
   parseCodeowners,
 } from "./codeowners.js";
 import { commentMarkdown, summaryMarkdown } from "./report.js";
+import { createAuditSetupLink } from "./setup.js";
 
 const MAX_OPEN_PULL_REQUESTS = 100;
 const MAX_CODEOWNERS_PULL_REQUESTS = 30;
@@ -113,6 +114,7 @@ export async function run() {
   const failBelow = failBelowRaw
     ? integerInput("fail-below", 0, { min: 0, max: 100 })
     : null;
+  const createSetupLink = core.getBooleanInput("create-setup-link");
   const { owner, repo } = github.context.repo;
   const octokit = github.getOctokit(token);
 
@@ -170,7 +172,17 @@ export async function run() {
       openResponse.data.length === MAX_OPEN_PULL_REQUESTS &&
       /rel="next"/.test(openResponse.headers.link ?? ""),
   });
-  const markdown = summaryMarkdown(report);
+  let setup = null;
+  if (createSetupLink) {
+    try {
+      setup = await createAuditSetupLink({ core, owner, repo });
+    } catch (error) {
+      core.warning(
+        `The audit completed, but the optional setup link was not created: ${error instanceof Error ? error.message : String(error)}`
+      );
+    }
+  }
+  const markdown = summaryMarkdown(report, setup);
   await core.summary.addRaw(markdown).write();
   const writtenReportPath = await writeReport(reportPath, report);
 
@@ -184,6 +196,8 @@ export async function run() {
   core.setOutput("report-path", writtenReportPath);
   core.setOutput("badge-url", report.badgeUrl ?? "");
   core.setOutput("health-url", report.healthUrl ?? "");
+  core.setOutput("setup-id", setup?.id ?? "");
+  core.setOutput("setup-url", setup?.url ?? "");
 
   if (comment) {
     const issueNumber = github.context.payload.pull_request?.number;

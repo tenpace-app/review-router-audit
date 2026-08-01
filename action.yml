@@ -33,6 +33,22 @@ inputs:
     description: Fail the step when the health score is below this value. Empty means report only.
     required: false
     default: ""
+  create-setup-link:
+    description: Create a human-approved Review Router setup link in the audit summary.
+    required: false
+    default: "false"
+  slack-channel:
+    description: Slack channel proposed when create-setup-link is true.
+    required: false
+    default: pull-requests
+  setup-preset:
+    description: Routing preset proposed when create-setup-link is true.
+    required: false
+    default: repo-watch
+  reviewer-mentions:
+    description: Reviewer mention policy proposed when create-setup-link is true.
+    required: false
+    default: all
 outputs:
   score:
     description: Review-health score from 0 to 100, or n/a when no signal is available.
@@ -54,6 +70,10 @@ outputs:
     description: Live Review Router health badge URL for this public repository.
   health-url:
     description: Shareable Review Router health report URL for this public repository.
+  setup-id:
+    description: Optional Review Router setup-session ID.
+  setup-url:
+    description: Optional short-lived human authorization URL.
 runs:
   using: node24
   main: dist/index.js

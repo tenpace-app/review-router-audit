@@ -1,0 +1,21 @@
+name: Review health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 9 * * 1"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Patrax/review-router-audit@v1
+        id: audit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: review-router-audit
+          path: ${{ steps.audit.outputs.report-path }}

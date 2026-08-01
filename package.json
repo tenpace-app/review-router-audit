@@ -1,0 +1,32 @@
+{
+  "name": "review-router-audit",
+  "version": "1.0.0",
+  "description": "Audit stale and unowned pull requests, review response time, CODEOWNERS coverage, and reviewer load.",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.js -o dist --minify --source-map",
+    "check-dist": "npm run build && git diff --exit-code -- dist",
+    "test": "node --test",
+    "check": "npm test && npm run build"
+  },
+  "keywords": [
+    "github-action",
+    "code-review",
+    "pull-requests",
+    "codeowners"
+  ],
+  "author": "Tenpace",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/github": "^9.1.1",
+    "minimatch": "^10.2.6"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.44.1"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

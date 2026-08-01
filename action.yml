@@ -1,0 +1,59 @@
+name: Review Router Audit
+description: Audit PR review health, CODEOWNERS gaps, response time, and reviewer load.
+author: Tenpace
+branding:
+  icon: activity
+  color: green
+inputs:
+  github-token:
+    description: GitHub token used to read repository and pull request data.
+    required: true
+    default: ${{ github.token }}
+  stale-days:
+    description: Days without an update before an open pull request is stale.
+    required: false
+    default: "7"
+  sample-size:
+    description: Number of recently closed pull requests used for review metrics. Maximum 100.
+    required: false
+    default: "40"
+  max-reviewer-load:
+    description: Number of open review requests that marks a reviewer as overloaded.
+    required: false
+    default: "4"
+  report-path:
+    description: Path for the JSON report. Use an empty value to skip the file.
+    required: false
+    default: review-router-audit.json
+  comment:
+    description: Post or update a pull request comment for pull_request events.
+    required: false
+    default: "false"
+  fail-below:
+    description: Fail the step when the health score is below this value. Empty means report only.
+    required: false
+    default: ""
+outputs:
+  score:
+    description: Review-health score from 0 to 100, or n/a when no signal is available.
+  stale-count:
+    description: Number of stale open, non-draft pull requests.
+  unowned-count:
+    description: Number of open, non-draft pull requests with no requested reviewer, team, or assignee.
+  median-first-review-hours:
+    description: Median hours from pull request creation to the first submitted review, or n/a.
+  reviewer-concentration:
+    description: Percentage of sampled reviews handled by the busiest reviewer, or n/a.
+  codeowners-gap-count:
+    description: Number of sampled open pull requests with at least one file that has no CODEOWNERS match.
+  overloaded-reviewer-count:
+    description: Number of reviewers at or above max-reviewer-load open requests.
+  report-path:
+    description: Path to the generated JSON report, or an empty value.
+  badge-url:
+    description: Live Review Router health badge URL for this public repository.
+  health-url:
+    description: Shareable Review Router health report URL for this public repository.
+runs:
+  using: node24
+  main: dist/index.js

@@ -64,7 +64,7 @@ export function summaryMarkdown(report, setup = null) {
   } else {
     lines.push(
       "",
-      "[Create a human-authenticated setup link with the Review Router Setup Action](https://github.com/Patrax/review-router-setup)"
+      "[Create a human-authenticated setup link with the Review Router Setup Action](https://github.com/tenpace-app/review-router-setup)"
     );
   }
   lines.push(

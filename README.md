@@ -1,6 +1,6 @@
 # Review Router Audit
 
-[![Test](https://github.com/Patrax/review-router-audit/actions/workflows/test.yml/badge.svg)](https://github.com/Patrax/review-router-audit/actions/workflows/test.yml)
+[![Test](https://github.com/tenpace-app/review-router-audit/actions/workflows/test.yml/badge.svg)](https://github.com/tenpace-app/review-router-audit/actions/workflows/test.yml)
 
 Review Router Audit checks the review queue in a GitHub repository. It writes a job summary and a JSON report.
 
@@ -39,7 +39,7 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: Patrax/review-router-audit@v1
+      - uses: tenpace-app/review-router-audit@v1
         id: audit
 
       - uses: actions/upload-artifact@v7
@@ -92,7 +92,7 @@ permissions:
   id-token: write
 
 steps:
-  - uses: Patrax/review-router-audit@v1
+  - uses: tenpace-app/review-router-audit@v1
     with:
       create-setup-link: true
       slack-channel: pull-requests
@@ -119,7 +119,7 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: Patrax/review-router-audit@v1
+      - uses: tenpace-app/review-router-audit@v1
         with:
           comment: true
 ```

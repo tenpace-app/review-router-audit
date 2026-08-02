@@ -13,7 +13,7 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: Patrax/review-router-audit@v1
+      - uses: tenpace-app/review-router-audit@v1
         id: audit
       - uses: actions/upload-artifact@v7
         with:

@@ -17,7 +17,7 @@ The Action reports:
 
 The Action does not send data to Review Router. It uses the repository-scoped `GITHUB_TOKEN` to read GitHub data. The live badge and public report use public GitHub data when someone opens them.
 
-By default, the Action still sends no repository data to Tenpace. An explicit `create-setup-link: true` input creates only a declarative, human-approved setup session using GitHub Actions OIDC. The agent never receives provider credentials.
+By default, the Action still sends no repository data to Tenpace. An explicit `create-setup-link: true` input creates only a declarative, human-authenticated setup session using GitHub Actions OIDC. The agent never receives provider credentials.
 
 ## Add the audit
 

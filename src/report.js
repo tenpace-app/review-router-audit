@@ -57,14 +57,14 @@ export function summaryMarkdown(report, setup = null) {
   if (setup?.url) {
     lines.push(
       "",
-      `[Authorize this repository's Review Router setup](${setup.url})`,
+      `[Continue this repository's Review Router setup](${setup.url})`,
       "",
-      "A Tenpace team admin reviews the exact destination and completes GitHub and Slack authorization."
+      "A Tenpace team admin signs in to lock the exact destination, then completes GitHub and Slack authorization."
     );
   } else {
     lines.push(
       "",
-      "[Create a human-approved setup link with the Review Router Setup Action](https://github.com/Patrax/review-router-setup)"
+      "[Create a human-authenticated setup link with the Review Router Setup Action](https://github.com/Patrax/review-router-setup)"
     );
   }
   lines.push(

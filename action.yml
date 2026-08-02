@@ -34,7 +34,7 @@ inputs:
     required: false
     default: ""
   create-setup-link:
-    description: Create a human-approved Review Router setup link in the audit summary.
+    description: Create a human-authenticated Review Router setup link in the audit summary.
     required: false
     default: "false"
   slack-channel:

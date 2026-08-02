@@ -93,7 +93,7 @@ export async function createAuditSetupLink({
       Authorization: `Bearer ${oidcToken}`,
       "Content-Type": "application/json",
       "Idempotency-Key": idempotencyKey,
-      "User-Agent": "review-router-audit-action/1.1.0",
+      "User-Agent": "review-router-audit-action/1.1.1",
     },
     body: JSON.stringify({ source: "review_health_audit", intent }),
     signal: AbortSignal.timeout(15_000),

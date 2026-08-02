@@ -59,7 +59,7 @@ export function summaryMarkdown(report, setup = null) {
       "",
       `[Continue this repository's Review Router setup](${setup.url})`,
       "",
-      "A Tenpace team admin signs in to lock the exact destination, then completes GitHub and Slack authorization."
+      "Sign in to Tenpace to lock the exact destination, then complete GitHub and Slack authorization."
     );
   } else {
     lines.push(

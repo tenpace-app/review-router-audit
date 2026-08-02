@@ -19,4 +19,5 @@ test("summary includes the report and product links", () => {
   assert.match(markdown, /82\/100/);
   assert.match(markdown, /Route these reviews to Slack/);
   assert.match(markdown, /badge\.svg/);
+  assert.doesNotMatch(markdown, /\badmin\b|\bapprov/i);
 });

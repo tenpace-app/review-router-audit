@@ -8,7 +8,8 @@
     "build": "ncc build src/index.js -o dist --minify --source-map",
     "check-dist": "npm run build && git diff --exit-code -- dist",
     "test": "node --test",
-    "check": "npm test && npm run build"
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-include='src/**/*.js' --test-coverage-lines=87 --test-coverage-branches=59 --test-coverage-functions=92",
+    "check": "npm run test:coverage && npm run build"
   },
   "keywords": [
     "github-action",

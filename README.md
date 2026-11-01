@@ -179,7 +179,7 @@ Open the Action summary and copy the generated badge Markdown. It has this form:
 
 ## Review Router
 
-[Review Router](https://review-router.tenpace.com/) sends GitHub pull request updates to Slack and mentions the selected reviewers. A Free plan and paid plans are available; see the [current limits and trial terms](https://review-router.tenpace.com/#plans). This audit Action remains free to use, subject to GitHub Actions usage limits.
+[Review Router](https://review-router.tenpace.com/) sends GitHub pull request updates to Slack and mentions the selected reviewers. Routing uses one Team plan with a 30-day card-required trial, then $5 per developer/month or $50 per developer/year; see the [current plan and trial terms](https://review-router.tenpace.com/#plans). This audit Action remains free to use, subject to GitHub Actions usage limits.
 
 ## License
 

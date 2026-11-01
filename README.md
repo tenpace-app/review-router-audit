@@ -19,6 +19,12 @@ The Action does not send data to Review Router. It uses the repository-scoped `G
 
 By default, the Action still sends no repository data to Tenpace. An explicit `create-setup-link: true` input creates only a declarative, human-authenticated setup session using GitHub Actions OIDC. The agent never receives provider credentials.
 
+## Routing plans
+
+Review Router Team includes MCP setup: **30 days free with a card**, then **$5 per developer/month** or **$50 per developer/year**. The subscription renews automatically; cancel in Billing before the trial ends to avoid a charge. There is no permanent free routing plan.
+
+The **public review-health audit remains free** and does not require a card. [Review current plan details](https://review-router.tenpace.com/#plans).
+
 ## Try it without installing anything
 
 [Check a public repository](https://review-router.tenpace.com/tools/pr-review-health) without an account, then add its live badge if the report is useful. For private repositories, run this Action inside GitHub and keep the report private; do not publish a public badge for a private repository.

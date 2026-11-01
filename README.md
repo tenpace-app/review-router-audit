@@ -19,6 +19,16 @@ The Action does not send data to Review Router. It uses the repository-scoped `G
 
 By default, the Action still sends no repository data to Tenpace. An explicit `create-setup-link: true` input creates only a declarative, human-authenticated setup session using GitHub Actions OIDC. The agent never receives provider credentials.
 
+## Try it without installing anything
+
+[Check a public repository](https://review-router.tenpace.com/tools/pr-review-health) without an account, then add its live badge if the report is useful. For private repositories, run this Action inside GitHub and keep the report private; do not publish a public badge for a private repository.
+
+[How to interpret the audit](https://review-router.tenpace.com/docs/review-health) explains the thresholds and limitations. A score is a starting point for a conversation, not a ranking of developers.
+
+## Fix the handoff after the audit
+
+If PRs repeatedly lack an owner or wait in the wrong channel, [set up routing with your coding assistant](https://review-router.tenpace.com/docs/mcp), or use the [Setup Action](https://github.com/tenpace-app/review-router-setup). You confirm provider access in the browser. A setup test proves connectivity; check a real PR before calling the workflow complete.
+
 ## Add the audit
 
 Create `.github/workflows/review-health.yml`:
